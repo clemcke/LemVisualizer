@@ -7,7 +7,7 @@ class Visualizer < Processing::App
 
   def setup
     smooth
-    size(1080,600)
+    size(1280,760)
     background 10    
     setup_sound
   end
@@ -50,7 +50,7 @@ class Visualizer < Processing::App
   end
 
   def animate_sound
-    animate_circles
+    animate_bouncing_circle
   end
 
   def animate_circles
@@ -75,6 +75,32 @@ class Visualizer < Processing::App
     fill @red2, @green2, @blue2
     stroke @red2+20, @green2+20, @blue2+20
     ellipse(@x2, @y2, @size, @size)
+  end
+  
+  def animate_bouncing_circle
+    @x_min ||= 0
+    @x_velocity ||= 1
+    @y_min ||= 0
+    @y_velocity ||= 1
+
+    @size = @scaled_ffts[5]*height
+    @size *= 4 if @beat.is_onset
+    @red1 = @scaled_ffts[0]*255
+    @green1 = @scaled_ffts[1]*255
+    @blue1 = @scaled_ffts[4]*255
+    fill @red1, @green1, @blue1
+    stroke @red1+20, @green1+20, @blue1+20
+    
+    @x_min += width/500*@x_velocity
+    @y_min += height/200*@y_velocity
+    @x1 = (1 - @scaled_ffts[5])*width/3 + @x_min
+    @y1 = (1 - @scaled_ffts[5])*height/3 + @y_min
+    @x_velocity = -1 if !@beat.is_onset && @x1 + @size/2 > width
+    @x_velocity = 1 if !@beat.is_onset && @x1 - @size/2 < 0
+    @y_velocity = -1 if !@beat.is_onset && @y1 + @size/2 > height
+    @y_velocity = 1 if !@beat.is_onset && @y1 - @size/2 < 0
+
+    ellipse(@x1, @y1, @size, @size)
   end
 end
 
