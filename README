@@ -1,0 +1,17 @@
+Originally based off of reddit-posted article:
+http://dry.ly/2010/10/17/create-a-music-visualizer-in-7-steps-with-ruby/
+
+Requirements:
+Ruby-Processing (comes with jruby, processing, and minim)
+Soundflower
+http://code.google.com/p/soundflower/
+
+MacOsX Setup:
+sudo gem install ruby-processing
+install soundflower
+SystemPreferences > Sound > Input
+  set sound input to Soundflower
+If you have any issues, try playing with sound settings also in Audio MIDI Setup
+
+Run:
+rp5 run visualizer.rb
