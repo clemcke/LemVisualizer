@@ -2,7 +2,7 @@
 # run with command: rp5 run visulizer.rb
 
 require 'visualization'
-require 'examples/bouncing_circles2'
+Dir["examples/*.rb"].each {|f| require f}
 
 class Visualizer < Processing::App
   load_library "minim"
@@ -11,7 +11,7 @@ class Visualizer < Processing::App
     smooth
     size(1280,760)
     background 10    
-    @visualization = BouncingCircles2.new(self)
+    @visualization = TunnelWipe.new(self)
   end
   
   def draw

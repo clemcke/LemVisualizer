@@ -14,12 +14,12 @@ class SimpleCircles < Visualization
 
     @x2  = width/2 - @scaled_ffts[5]*width
     @y2  = height/2 - @scaled_ffts[6]*height
-    @red2    = @scaled_ffts[7]*255
-    @green2  = @scaled_ffts[8]*255
-    @blue2   = @scaled_ffts[9]*255
+    @red    = @scaled_ffts[7]*255
+    @green  = @scaled_ffts[8]*255
+    @blue   = @scaled_ffts[9]*255
 
-    @visualizer.fill @red2, @green2, @blue2
-    @visualizer.stroke @red2+20, @green2+20, @blue2+20
+    @visualizer.fill @red, @green, @blue
+    @visualizer.stroke @red+20, @green+20, @blue+20
     @visualizer.ellipse(@x2, @y2, @size, @size)
   end
 end
