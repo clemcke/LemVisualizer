@@ -1,14 +1,18 @@
-class TunnelWipe < Visualization
+require "visualizer"
+
+class TunnelWipe < Visualizer
   # play with diameter min and max to get different effects
   def draw
+    super
+    update_sound
     if @diameter.nil? || @diameter > height#(height > width ? height : width)*2
       set_colors
       @diameter = height/2#10
     end
 
-    @visualizer.fill @red, @green, @blue
-    @visualizer.stroke @red+20, @green+20, @blue+20
-    @visualizer.ellipse(width/2,height/2, @diameter,@diameter)
+    fill @red, @green, @blue
+    stroke @red+20, @green+20, @blue+20
+    ellipse(width/2,height/2, @diameter,@diameter)
 
     @diameter *= 1.1
   end
@@ -19,3 +23,5 @@ class TunnelWipe < Visualization
     @blue   = @scaled_ffts[9]*255
   end
 end
+
+TunnelWipe.new :title => "TunnelWipe"
