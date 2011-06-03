@@ -1,8 +1,12 @@
-class BouncingCircles2 < Visualization
+require 'visualizer'
+
+class BouncingCircles2 < Visualizer
   def draw
     # change which color changes on bounce
     # make object w/bounce event
     # has a more subtle color shift
+
+    super
     @x_min ||= 0
     @x_velocity ||= 1
     @y_min ||= 0
@@ -24,8 +28,8 @@ class BouncingCircles2 < Visualization
     @size = @scaled_ffts[5]*height
     @size *= 4 if @beat.is_onset
 
-    @visualizer.fill @red1, @green1, @blue1
-    @visualizer.stroke @red1+20, @green1+20, @blue1+20
+    fill @red1, @green1, @blue1
+    stroke @red1+20, @green1+20, @blue1+20
 
     @x_min += width/500*@x_velocity
     @y_min += height/200*@y_velocity
@@ -36,6 +40,8 @@ class BouncingCircles2 < Visualization
     (@changing_color = rand(3)) && @y_velocity = -1 if !@beat.is_onset && @y1 + @size/2 > height
     (@changing_color = rand(3)) && @y_velocity = 1 if !@beat.is_onset && @y1 - @size/2 < 0
 
-    @visualizer.ellipse(@x1, @y1, @size, @size)
+    ellipse(@x1, @y1, @size, @size)
   end
 end
+
+BouncingCircles2.new :title => "Bouncing Circles with Subtle Color Shift"
