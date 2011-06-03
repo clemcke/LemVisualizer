@@ -4,7 +4,6 @@ class TunnelWipe < Visualizer
   # play with diameter min and max to get different effects
   def draw
     super
-    update_sound
     if @diameter.nil? || @diameter > height#(height > width ? height : width)*2
       set_colors
       @diameter = height/2#10
