@@ -26,6 +26,8 @@ class BouncingCircles < Visualizer
     @y_velocity = 1 if !@beat.is_onset && @y1 - @size/2 < 0
 
     ellipse(@x1, @y1, @size, @size)
+
+    @tunnel.draw
   end
 end
 

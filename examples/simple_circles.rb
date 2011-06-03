@@ -1,6 +1,20 @@
 require 'visualizer'
 
-class SimpleCircles < Visualizer
+#class Effect
+#  def initialize(visualizer)
+#    @visualizer = visualizer
+#  end
+#
+#  def method_missing(&args)
+#    begin
+#      @visualizer.send(args[0],args[1..(args.length - 1)])
+#    rescue NoMethodError => e
+#      raise e
+#    end
+#  end
+#end
+
+class SimpleCircles < Effect
   def draw
     super
     @size = @scaled_ffts[1]*height
@@ -27,4 +41,4 @@ class SimpleCircles < Visualizer
   end
 end
 
-SimpleCircles.new :title => "SimpleCircles"
+SimpleCircles.new(Visualizer.new(:title => "SimpleCircles"))

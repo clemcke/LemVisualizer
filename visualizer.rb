@@ -1,6 +1,9 @@
 # Visualizer
 # run with command: rp5 run visulizer.rb
 
+require 'effect'
+require 'tunnel_effect'
+
 class Visualizer < Processing::App
   load_library "minim"
   import "ddf.minim"
@@ -10,7 +13,15 @@ class Visualizer < Processing::App
     setup_music
     smooth
     size(1280,760)
-    background 10    
+    background 10
+    @effect = Effect.new
+    @tunnel = TunnelEffect.new
+  end
+
+  def draw
+    update_sound
+    self.instance_eval &@effect.draw_block
+    self.instance_eval &@tunnel.draw_block
   end
 
   def setup_music
@@ -40,10 +51,8 @@ class Visualizer < Processing::App
     end
     @beat.detect(@input.left)
   end
-  
-  def draw
-    update_sound
-  end
+
+
 end
 
-#Visualizer.new :title => "Visualizer"
+Visualizer.new :title => "Visualizer"

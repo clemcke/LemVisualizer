@@ -1,0 +1,10 @@
+The goal:
+
+To create a visualizer library that can draw complicated visualization sequences using a simplified api or descriptive language
+Example:
+Visualizer.new(:height => 1280, :width => 720, :visualizations => [:simple_circles])
+
+extract visualizer.rb to a module
+create sample.rb that includes visualizer and runs it
+create tests that at least test that each function runs
+   test that certain attributes are accessible
