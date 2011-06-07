@@ -24,7 +24,7 @@ class Visualizer < Processing::App
     @minim = Minim.new(self)
     @input = @minim.get_line_in
     @fft = FFT.new(@input.left.size, 44100)
-    @beat = BeatDetect.new
+    @vars[:beat] = BeatDetect.new
 
     @freqs = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000]
 
@@ -45,7 +45,7 @@ class Visualizer < Processing::App
       @current_ffts[i] = ((1 - @fft_smoothing) * new_fft) + (@fft_smoothing * @previous_ffts[i])
       @vars[:scaled_ffts][i] = (@current_ffts[i]/@max_ffts[i])
     end
-    @beat.detect(@input.left)
+    @vars[:beat].detect(@input.left)
   end
 
   def effects
