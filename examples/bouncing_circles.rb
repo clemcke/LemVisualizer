@@ -30,5 +30,3 @@ class BouncingCircles < Visualizer
     @tunnel.draw
   end
 end
-
-BouncingCircles.new :title => "Bouncing Circles"

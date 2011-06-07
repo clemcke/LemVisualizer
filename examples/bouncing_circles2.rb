@@ -43,5 +43,3 @@ class BouncingCircles2 < Visualizer
     ellipse(@x1, @y1, @size, @size)
   end
 end
-
-BouncingCircles2.new :title => "Bouncing Circles with Subtle Color Shift"

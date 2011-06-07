@@ -1,27 +1,23 @@
 # Visualizer
 # run with command: rp5 run visulizer.rb
 
-require 'effect'
-require 'tunnel_effect'
-
 class Visualizer < Processing::App
   load_library "minim"
   import "ddf.minim"
   import "ddf.minim.analysis"
 
   def setup
+    @vars = {}
+    @effects = []
     setup_music
     smooth
     size(1280,760)
     background 10
-    @effect = Effect.new
-    @tunnel = TunnelEffect.new
   end
 
   def draw
     update_sound
-    self.instance_eval &@effect.draw_block
-    self.instance_eval &@tunnel.draw_block
+    @effects.each(&:draw)
   end
 
   def setup_music
@@ -35,7 +31,7 @@ class Visualizer < Processing::App
     @current_ffts = Array.new(@freqs.size, 0.001)
     @previous_ffts= Array.new(@freqs.size, 0.001)
     @max_ffts = Array.new(@freqs.size, 0.001)
-    @scaled_ffts = Array.new(@freqs.size, 0.001)
+    @vars[:scaled_ffts] = Array.new(@freqs.size, 0.001)
 
     @fft_smoothing = 0.8
   end
@@ -47,12 +43,17 @@ class Visualizer < Processing::App
       new_fft = @fft.get_freq(freq)
       @max_ffts[i] = new_fft if new_fft > @max_ffts[i]
       @current_ffts[i] = ((1 - @fft_smoothing) * new_fft) + (@fft_smoothing * @previous_ffts[i])
-      @scaled_ffts[i] = (@current_ffts[i]/@max_ffts[i])
+      @vars[:scaled_ffts][i] = (@current_ffts[i]/@max_ffts[i])
     end
     @beat.detect(@input.left)
   end
 
+  def effects
+    @effects
+  end
 
+  def vars
+    @vars
+  end
 end
 
-Visualizer.new :title => "Visualizer"

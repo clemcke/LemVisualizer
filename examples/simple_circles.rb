@@ -40,5 +40,3 @@ class SimpleCircles < Effect
     ellipse(@x2, @y2, @size, @size)
   end
 end
-
-SimpleCircles.new(Visualizer.new(:title => "SimpleCircles"))
