@@ -14,4 +14,4 @@ SystemPreferences > Sound > Input
 If you have any issues, try playing with sound settings also in Audio MIDI Setup
 
 Run:
-rp5 run visualizer.rb
+rp5 run run_visualizer.rb
