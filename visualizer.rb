@@ -1,6 +1,7 @@
 # Visualizer
 # run with command: rp5 run visulizer.rb
 
+require 'ruby-processing'
 class Visualizer < Processing::App
   load_library "minim"
   import "ddf.minim"
@@ -11,7 +12,7 @@ class Visualizer < Processing::App
     @effects = []
     setup_music
     smooth
-    size(1280,760)
+    size(@width,@height)
     background 10
   end
 
