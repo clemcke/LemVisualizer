@@ -7,8 +7,10 @@ Soundflower
 http://code.google.com/p/soundflower/
 
 MacOsX Setup:
+install jruby
 sudo gem install ruby-processing
-install soundflower
+install soundflower via pkg
+launch Soundflowerbed
 SystemPreferences > Sound > Input
   set sound input to Soundflower
 If you have any issues, try playing with sound settings also in Audio MIDI Setup
